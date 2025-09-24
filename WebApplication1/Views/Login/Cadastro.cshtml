@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "_LayoutLogin";
+}
+
+@model Usuario
+
+<form asp-controller="Login" asp-action="CadastrarUsuario" method="post">
+
+    <div class="mb-3 col-md-4">
+        <label class="form-label">Email</label>
+        <input type="text" asp-for="Email" class="form-control">
+    </div>
+
+    <div class="mb-3 col-md-2">
+        <label class="form-label">Senha</label>
+        <input type="text" asp-for="Senha" class="form-control ">
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a class="btn btn-primary" type="button" asp-controller="Login" asp-action="Index"> Voltar</a>
+    </div>
+</form>

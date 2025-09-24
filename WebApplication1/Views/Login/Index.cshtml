@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_LayoutLogin";
+}
+
+@if (TempData["MsgErro"] != null)
+{
+    <div class="alert-danger">
+        @TempData["MsgErro"]
+    </div>
+}
+
+@model Usuario
+
+<form class="row g-3" asp-controller="Login" asp-action="ValidaUsuario">
+    <div class="col-md-3">
+        <label for="inputEmail4" class="form-label">Usuário</label>
+        <input type="email" asp-for="Email" class="form-control" id="inputEmail4">
+        <label for="inputPassword4" class="form-label">Senha</label>
+        <input type="password" asp-for="Senha" class="form-control" id="inputPassword4">
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+        <a type="submit" class="btn btn-primary" role="button" asp-controller="Login" asp-action="Cadastro">Cadastre-se</a>
+    </div>
+</form>
