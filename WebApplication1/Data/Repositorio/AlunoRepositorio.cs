@@ -1,24 +1,26 @@
 ﻿using WebApplication1.Data.Repositorio.Interfaces;
 using WebApplication1.Models;
 
-public class UsuarioRepositorio : IUsuarioRepositorio
+public class AlunoRepositorio : IAlunoRepositorio
 {
 
     private readonly BancoContexto _bancoContexto;
 
-    public UsuarioRepositorio(BancoContexto bancoContexto)
+    public AlunoRepositorio(BancoContexto bancoContexto)
     {
         _bancoContexto = bancoContexto;
     }
 
-    public void CadastrarUsuario(Usuario usuario)
+    public void CadastrarAluno(Aluno aluno)
     {
-        _bancoContexto.Usuario.Add(usuario);
+        _bancoContexto.Aluno.Add(aluno);
         _bancoContexto.SaveChanges();
     }
 
-    public Usuario ValidarUsuario(Usuario usuario)
+    public List<Aluno> BuscarTodosAlunos()
     {
-        return _bancoContexto.Usuario.FirstOrDefault(x => x.Email == usuario.Email && x.Senha == usuario.Senha);
+        return _bancoContexto.Aluno.ToList();
     }
+
+
 }

@@ -6,9 +6,10 @@ public class AlunoMapeamento : IEntityTypeConfiguration<Aluno>
 {
     public void Configure(EntityTypeBuilder<Aluno> builder)
     {
-        builder.ToTable("Usuario");
+        builder.ToTable("Aluno");
 
         builder.HasKey(t => t.Id);
+        builder.Property(t => t.Id).ValueGeneratedOnAdd();
 
         builder.Property(t => t.Name).HasColumnType("varchar(50)");
         builder.Property(t => t.Matricula).HasColumnType("int");
