@@ -33,10 +33,10 @@
                 <td>@item.Numero</td>
                 <td class="text-end">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-sm btn-primary" asp-controller="Aluno" asp-action="Editar" title="Editar">
+                        <a class="btn btn-sm btn-primary" asp-controller="Aluno" asp-action="EditarAluno" asp-route-id="@item.Id" title="Editar">
                             <i class="bi bi-pencil-fill"></i> Editar
                         </a>
-                        <a class="btn btn-sm btn-danger" asp-controller="Aluno" asp-action="Excluir" title="Excluir">
+                        <a class="btn btn-sm btn-danger" asp-controller="Aluno" asp-action="Excluir" asp-route-id="@item.Id" title="Excluir">
                             <i class="bi bi-trash-fill"></i> Excluir
                         </a>
                     </div>

@@ -1,0 +1,62 @@
+﻿@model Aluno
+
+<h2>Editar Aluno</h2>
+
+<form asp-controller="Aluno"  asp-action="Editar" asp-route-id="@Model.Id" method="post">
+    <div class="form-group">
+        <label asp-for="Matricula"></label>
+        <input asp-for="Matricula" class="form-control" />
+        <span asp-validation-for="Matricula" class="text-danger">@Model.Matricula</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger">@Model.Name</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cpf"></label>
+        <input asp-for="Cpf" class="form-control" />
+        <span asp-validation-for="Cpf" class="text-danger">@Model.Cpf</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataNascimento"></label>
+        <input asp-for="DataNascimento" type="date" class="form-control" />
+        <span asp-validation-for="DataNascimento" class="text-danger">@Model.DataNascimento</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cep"></label>
+        <input asp-for="Cep" class="form-control" />
+        <span asp-validation-for="Cep" class="text-danger">@Model.Cep</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Endereco"></label>
+        <input asp-for="Endereco" class="form-control" />
+        <span asp-validation-for="Endereco" class="text-danger">@Model.Endereco</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Bairro"></label>
+        <input asp-for="Bairro" class="form-control" />
+        <span asp-validation-for="Bairro" class="text-danger">@Model.Bairro</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cidade"></label>
+        <input asp-for="Cidade" class="form-control" />
+        <span asp-validation-for="Cidade" class="text-danger">@Model.Cidade</span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Numero"></label>
+        <input asp-for="Numero" class="form-control" />
+        <span asp-validation-for="Numero" class="text-danger">@Model.Numero</span>
+    </div><br>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" asp-controller="Aluno" class="btn btn-secondary">Cancelar</a>
+</form>

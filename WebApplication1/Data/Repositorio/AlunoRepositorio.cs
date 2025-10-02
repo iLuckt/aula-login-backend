@@ -17,7 +17,25 @@ public class AlunoRepositorio : IAlunoRepositorio
         _bancoContexto.SaveChanges();
     }
 
-    public List<Aluno> BuscarTodosAlunos()
+    public void EditarAluno(int id, Aluno aluno)
+    {
+        aluno.Id = id;
+
+        _bancoContexto.Aluno.Update(aluno);
+        _bancoContexto.SaveChanges();
+    }
+
+    public void ExcluirAluno(int id)
+    {
+        var aluno = _bancoContexto.Aluno.FirstOrDefault(a => a.Id == id);
+        if (aluno != null)
+        {
+            _bancoContexto.Aluno.Remove(aluno);
+            _bancoContexto.SaveChanges();
+        }
+    }
+
+    public IEnumerable<Aluno> BuscarTodosAlunos()
     {
         return _bancoContexto.Aluno.ToList();
     }

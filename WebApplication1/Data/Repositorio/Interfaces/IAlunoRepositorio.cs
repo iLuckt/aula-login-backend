@@ -6,6 +6,8 @@ namespace WebApplication1.Data.Repositorio.Interfaces
     {
 
         public void CadastrarAluno(Aluno aluno);
-        public List<Aluno> BuscarTodosAlunos();
+        public IEnumerable<Aluno> BuscarTodosAlunos();
+        public void EditarAluno(int id, Aluno aluno);
+        public void ExcluirAluno(int id);
     }
 }

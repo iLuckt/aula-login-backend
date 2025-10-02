@@ -22,10 +22,26 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+        public IActionResult EditarAluno(int id)
+        {
+            var aluno = _alunoRepositorio.BuscarTodosAlunos().FirstOrDefault(a => a.Id == id);
+            return View(aluno);
+        }
         public IActionResult Cadastrar(Aluno aluno)
         {
             _alunoRepositorio.CadastrarAluno(aluno);
             return View("Index");
+        }
+        public IActionResult Editar(int id, Aluno aluno)
+        {
+            _alunoRepositorio.EditarAluno(id, aluno);
+            return View("Index", _alunoRepositorio.BuscarTodosAlunos());
+        }
+        public IActionResult Excluir(int id)
+        {
+            _alunoRepositorio.ExcluirAluno(id);
+            return View("Index", _alunoRepositorio.BuscarTodosAlunos());
         }
     }
 }
