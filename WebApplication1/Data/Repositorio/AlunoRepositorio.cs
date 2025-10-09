@@ -1,4 +1,5 @@
-﻿using WebApplication1.Data.Repositorio.Interfaces;
+﻿using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using WebApplication1.Data.Repositorio.Interfaces;
 using WebApplication1.Models;
 
 public class AlunoRepositorio : IAlunoRepositorio
@@ -38,6 +39,15 @@ public class AlunoRepositorio : IAlunoRepositorio
     public IEnumerable<Aluno> BuscarTodosAlunos()
     {
         return _bancoContexto.Aluno.ToList();
+    }
+
+    public bool TemAlunoComMatricula(int matricula)
+    {
+        return _bancoContexto.Aluno.Any(a => a.Matricula == matricula);
+    }
+    public bool TemAlunoComCpf(int cpf)
+    {
+        return _bancoContexto.Aluno.Any(a => a.Cpf == cpf);
     }
 
 
