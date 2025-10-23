@@ -50,5 +50,8 @@ public class AlunoRepositorio : IAlunoRepositorio
         return _bancoContexto.Aluno.Any(a => a.Cpf == cpf);
     }
 
-
+    public IEnumerable<Aluno> ListarTodos()
+    {
+        return _bancoContexto.Aluno.ToList();
+    }
 }

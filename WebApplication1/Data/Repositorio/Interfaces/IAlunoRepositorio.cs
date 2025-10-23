@@ -11,5 +11,6 @@ namespace WebApplication1.Data.Repositorio.Interfaces
         public void ExcluirAluno(int id);
         public bool TemAlunoComCpf(int cpf);
         public bool TemAlunoComMatricula(int matricula);
+        public IEnumerable<Aluno> ListarTodos();
     }
 }

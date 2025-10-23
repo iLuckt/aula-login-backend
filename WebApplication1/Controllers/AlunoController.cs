@@ -7,17 +7,14 @@ namespace WebApplication1.Controllers
 {
     public class AlunoController : Controller
     {
+
         private readonly IAlunoRepositorio _alunoRepositorio;
 
         public AlunoController(IAlunoRepositorio alunoRepositorio)
         {
             _alunoRepositorio = alunoRepositorio;
         }
-
-        public IActionResult Index()
-        {
-            return View(_alunoRepositorio.BuscarTodosAlunos());
-        }
+        
 
         public IActionResult AdicionarAluno()
         {
@@ -42,7 +39,7 @@ namespace WebApplication1.Controllers
         public IActionResult Cadastrar(Aluno aluno)
         {
 
-            if (aluno.Name.IsNullOrEmpty())
+            if (aluno.Nome.IsNullOrEmpty())
             {
                 TempData["ErroNomeInvalida"] = "Você inseriu um nome nullo ou vazio.";
                 return View("AdicionarAluno", aluno);
@@ -108,6 +105,18 @@ namespace WebApplication1.Controllers
             
             TempData["Mensagem"] = "Aluno cadastrado com sucesso";
             return RedirectToAction("Index");
+        }
+        public IActionResult Index(string? searchTerm)
+        {
+            if (!searchTerm.IsNullOrEmpty())
+            {
+                var alunos = _alunoRepositorio.ListarTodos()
+                    .Where(a => a.Nome.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+                return View(alunos);
+            }
+
+            return View(_alunoRepositorio.ListarTodos());
         }
     }
 }
