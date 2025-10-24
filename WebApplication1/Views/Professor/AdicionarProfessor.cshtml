@@ -1,6 +1,6 @@
 ﻿@model Professores
 
-<form asp-controller="Professores" asp-action="Cadastrar" method="post">
+<form asp-controller="Professor" asp-action="Cadastrar" method="post">
 
     <div class="mb-3 col-md-4">
         <label class="form-label">Nome:</label>
@@ -37,6 +37,6 @@
 
     <div class="text-center">
         <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <a class="btn btn-primary" type="button" asp-controller="Aluno" asp-action="Index"> Voltar</a>
+        <a class="btn btn-primary" type="button" asp-controller="Professor" asp-action="Index"> Voltar</a>
     </div>
 </form>
