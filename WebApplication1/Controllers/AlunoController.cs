@@ -5,14 +5,14 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class AlunoController : Controller
+    public class TurmaController : Controller
     {
 
-        private readonly IAlunoRepositorio _alunoRepositorio;
+        private readonly ITurmaRepositorio _turmaRepositorio;
 
-        public AlunoController(IAlunoRepositorio alunoRepositorio)
+        public TurmaController(ITurmaRepositorio turmaRepositorio)
         {
-            _alunoRepositorio = alunoRepositorio;
+            _turmaRepositorio = turmaRepositorio;
         }
         
 
@@ -23,20 +23,20 @@ namespace WebApplication1.Controllers
 
         public IActionResult EditarAluno(int id)
         {
-            var aluno = _alunoRepositorio.BuscarTodosAlunos().FirstOrDefault(a => a.Id == id);
+            var aluno = _turmaRepositorio.BuscarTodosAlunos().FirstOrDefault(a => a.Id == id);
             return View(aluno);
         }
-        public IActionResult Editar(int id, Aluno aluno)
+        public IActionResult Editar(int id, Turma turma)
         {
-            _alunoRepositorio.EditarAluno(id, aluno);
-            return View("Index", _alunoRepositorio.BuscarTodosAlunos());
+            _turmaRepositorio.EditarAluno(id, turma);
+            return View("Index", _turmaRepositorio.BuscarTodosAlunos());
         }
         public IActionResult Excluir(int id)
         {
-            _alunoRepositorio.ExcluirAluno(id);
-            return View("Index", _alunoRepositorio.BuscarTodosAlunos());
+            _turmaRepositorio.ExcluirAluno(id);
+            return View("Index", _turmaRepositorio.BuscarTodosAlunos());
         }
-        public IActionResult Cadastrar(Aluno aluno)
+        public IActionResult Cadastrar(Turma aluno)
         {
 
             if (aluno.Nome.IsNullOrEmpty())
@@ -51,7 +51,7 @@ namespace WebApplication1.Controllers
                 return View("AdicionarAluno", aluno);
             }
 
-            if (_alunoRepositorio.TemAlunoComMatricula(aluno.Matricula))
+            if (_turmaRepositorio.TemAlunoComMatricula(aluno.Matricula))
             {
                 TempData["ErroMatriculaInvalida"] = "Já existe um aluno com essa matricula.";
                 return View("AdicionarAluno", aluno);
@@ -64,7 +64,7 @@ namespace WebApplication1.Controllers
                 return View("AdicionarAluno", aluno);
             }
 
-            if (_alunoRepositorio.TemAlunoComCpf(aluno.Cpf))
+            if (_turmaRepositorio.TemAlunoComCpf(aluno.Cpf))
             {
                 TempData["ErroCPFInvalida"] = "Já existe um aluno com esse cpf.";
                 return View("AdicionarAluno", aluno);
@@ -101,7 +101,7 @@ namespace WebApplication1.Controllers
                 return View("AdicionarAluno", aluno);
             }
 
-            _alunoRepositorio.CadastrarAluno(aluno);
+            _turmaRepositorio.CadastrarAluno(aluno);
             
             TempData["Mensagem"] = "Aluno cadastrado com sucesso";
             return RedirectToAction("Index");
@@ -110,13 +110,13 @@ namespace WebApplication1.Controllers
         {
             if (!searchTerm.IsNullOrEmpty())
             {
-                var alunos = _alunoRepositorio.ListarTodos()
+                var alunos = _turmaRepositorio.ListarTodos()
                     .Where(a => a.Nome.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
                     .ToList();
                 return View(alunos);
             }
 
-            return View(_alunoRepositorio.ListarTodos());
+            return View(_turmaRepositorio.ListarTodos());
         }
     }
 }

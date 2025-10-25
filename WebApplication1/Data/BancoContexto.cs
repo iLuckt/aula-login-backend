@@ -16,6 +16,7 @@ public class BancoContexto : DbContext
     }
 
     public DbSet<Usuario> Usuario { get; set; }
-    public DbSet<Aluno> Aluno { get; set; }
+    public DbSet<Turma> Aluno { get; set; }
     public DbSet<Professores> Professores { get; set; }
+    public DbSet<Turma> Turma { get; set; }
 }

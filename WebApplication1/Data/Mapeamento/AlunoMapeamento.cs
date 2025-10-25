@@ -2,14 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
 
-public class AlunoMapeamento : IEntityTypeConfiguration<Aluno>
+public class AlunoMapeamento : IEntityTypeConfiguration<Turma>
 {
-    public void Configure(EntityTypeBuilder<Aluno> builder)
+    public void Configure(EntityTypeBuilder<Turma> builder)
     {
         builder.ToTable("Aluno");
 
         builder.HasKey(t => t.Id);
         builder.Property(t => t.Id).ValueGeneratedOnAdd();
+        builder.Property(t => t.IdTurma).HasColumnType("int");
 
         builder.Property(t => t.Nome).HasColumnType("varchar(50)");
         builder.Property(t => t.Matricula).HasColumnType("int");

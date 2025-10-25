@@ -2,7 +2,7 @@
 using WebApplication1.Data.Repositorio.Interfaces;
 using WebApplication1.Models;
 
-public class AlunoRepositorio : IAlunoRepositorio
+public class AlunoRepositorio : ITurmaRepositorio
 {
 
     private readonly BancoContexto _bancoContexto;
@@ -12,13 +12,13 @@ public class AlunoRepositorio : IAlunoRepositorio
         _bancoContexto = bancoContexto;
     }
 
-    public void CadastrarAluno(Aluno aluno)
+    public void CadastrarAluno(Turma aluno)
     {
         _bancoContexto.Aluno.Add(aluno);
         _bancoContexto.SaveChanges();
     }
 
-    public void EditarAluno(int id, Aluno aluno)
+    public void EditarAluno(int id, Turma aluno)
     {
         aluno.Id = id;
 
@@ -28,7 +28,7 @@ public class AlunoRepositorio : IAlunoRepositorio
 
     public void ExcluirAluno(int id)
     {
-        var aluno = _bancoContexto.Aluno.FirstOrDefault(a => a.Id == id);
+        var aluno = _bancoContexto.Aluno.FirstOrDefault((System.Linq.Expressions.Expression<Func<Turma, bool>>)(a => a.Id == id));
         if (aluno != null)
         {
             _bancoContexto.Aluno.Remove(aluno);
@@ -36,7 +36,7 @@ public class AlunoRepositorio : IAlunoRepositorio
         }
     }
 
-    public IEnumerable<Aluno> BuscarTodosAlunos()
+    public IEnumerable<Turma> BuscarTodosAlunos()
     {
         return _bancoContexto.Aluno.ToList();
     }
@@ -50,7 +50,7 @@ public class AlunoRepositorio : IAlunoRepositorio
         return _bancoContexto.Aluno.Any(a => a.Cpf == cpf);
     }
 
-    public IEnumerable<Aluno> ListarTodos()
+    public IEnumerable<Turma> ListarTodos()
     {
         return _bancoContexto.Aluno.ToList();
     }
