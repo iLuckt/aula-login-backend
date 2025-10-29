@@ -2,7 +2,7 @@
 using WebApplication1.Data.Repositorio.Interfaces;
 using WebApplication1.Models;
 
-public class AlunoRepositorio : ITurmaRepositorio
+public class AlunoRepositorio : IAlunoRepositorio
 {
 
     private readonly BancoContexto _bancoContexto;
@@ -12,13 +12,13 @@ public class AlunoRepositorio : ITurmaRepositorio
         _bancoContexto = bancoContexto;
     }
 
-    public void CadastrarAluno(Turma aluno)
+    public void CadastrarAluno(Aluno aluno)
     {
         _bancoContexto.Aluno.Add(aluno);
         _bancoContexto.SaveChanges();
     }
 
-    public void EditarAluno(int id, Turma aluno)
+    public void EditarAluno(int id, Aluno aluno)
     {
         aluno.Id = id;
 
@@ -28,7 +28,7 @@ public class AlunoRepositorio : ITurmaRepositorio
 
     public void ExcluirAluno(int id)
     {
-        var aluno = _bancoContexto.Aluno.FirstOrDefault((System.Linq.Expressions.Expression<Func<Turma, bool>>)(a => a.Id == id));
+        var aluno = _bancoContexto.Aluno.FirstOrDefault(a => a.Id == id);
         if (aluno != null)
         {
             _bancoContexto.Aluno.Remove(aluno);
@@ -36,9 +36,9 @@ public class AlunoRepositorio : ITurmaRepositorio
         }
     }
 
-    public IEnumerable<Turma> BuscarTodosAlunos()
+    public Aluno? BuscarAlunoPorId(int id)
     {
-        return _bancoContexto.Aluno.ToList();
+        return _bancoContexto.Aluno.FirstOrDefault(a => a.Id == id);
     }
 
     public bool TemAlunoComMatricula(int matricula)
@@ -50,7 +50,7 @@ public class AlunoRepositorio : ITurmaRepositorio
         return _bancoContexto.Aluno.Any(a => a.Cpf == cpf);
     }
 
-    public IEnumerable<Turma> ListarTodos()
+    public IEnumerable<Aluno> ListarTodos()
     {
         return _bancoContexto.Aluno.ToList();
     }

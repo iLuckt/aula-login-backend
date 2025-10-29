@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Turma>
+﻿@model IEnumerable<Aluno>
 
 <div>
     <form method="get" asp-controller="Aluno" asp-action="Index">
@@ -19,6 +19,7 @@
             <th scope="col">Bairro</th>
             <th scope="col">Cidade</th>
             <th scope="col">Número</th>
+            <th scope="col">Turma</th>
             <th scope="col" class="text-end">Ações</th>
         </tr>
     </thead>
@@ -39,15 +40,16 @@
                     <td>@item.Matricula</td>
                     <td>@item.Nome </td>
                     <td>@item.Cpf</td>
+                    <td>@item.Cpf</td>
                     <td>@item.DataNascimento</td>
                     <td>@item.Cep</td>
                     <td>@item.Endereco</td>
                     <td>@item.Bairro</td>
                     <td>@item.Cidade</td>
-                    <td>@item.Numero</td>
+                    <td>@item.IdTurma</td>
                     <td class="text-end">
                         <div class="btn-group" role="group">
-                            <a type="submit" class="btn btn-sm btn-primary" role="button" asp-controller="Aluno" asp-route-id="@item.Id" asp-action="EditarAluno">Editar</a>
+                            <a type="submit" class="btn btn-sm btn-primary" role="button" asp-controller="Aluno" asp-route-id="@item.Id" asp-action="Editar">Editar</a>
                             <a type="submit" class="btn btn-sm btn-danger" role="button" asp-controller="Aluno" asp-route-id="@item.Id" asp-action="Excluir">Excluir</a>
                         </div>
                     </td>

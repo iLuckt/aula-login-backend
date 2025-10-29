@@ -1,6 +1,6 @@
-﻿@model Turma
+﻿@model Aluno
 
-<form asp-controller="Aluno" asp-action="Cadastrar" method="post">
+<form asp-controller="Aluno" asp-action="CadastrarAluno" method="post">
 
     <div class="mb-3 col-md-4">
         <label class="form-label">Nome:</label>
@@ -101,9 +101,20 @@
         <input type="text" asp-for="Numero" class="form-control" required>
     </div>
 
+    <div class="mb-3 col-md-4">
+        <label class="form-label">Turma:</label>
+
+        @if (TempData["ErroTurmaInvalida"] != null)
+        {
+            <p style="color: red;">@TempData["ErroTurmaInvalida"]</p>
+        }
+
+        <input type="text" asp-for="IdTurma" class="form-control" required>
+    </div>
+
     <div class="text-center">
         <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <a class="btn btn-primary" type="button" asp-controller="Aluno" asp-action="Index"> Voltar</a>
+        <a class="btn btn-primary" type="button" asp-controller="Aluno" asp-action="Index">Voltar</a>
     </div>
 </form>
 

@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
 
-public class AlunoMapeamento : IEntityTypeConfiguration<Turma>
+public class AlunoMapeamento : IEntityTypeConfiguration<Aluno>
 {
-    public void Configure(EntityTypeBuilder<Turma> builder)
+    public void Configure(EntityTypeBuilder<Aluno> builder)
     {
         builder.ToTable("Aluno");
 

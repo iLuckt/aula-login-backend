@@ -8,10 +8,10 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ITurmaRepositorio _turmaRepositorio;
-        private readonly ITurmaRepositorio _alunoRepositorio;
+        private readonly IAlunoRepositorio _alunoRepositorio;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ITurmaRepositorio alunoRepositorio, ITurmaRepositorio turmaRepositorio)
+        public HomeController(ILogger<HomeController> logger, IAlunoRepositorio alunoRepositorio, ITurmaRepositorio turmaRepositorio)
         {
             _logger = logger;
             _alunoRepositorio = alunoRepositorio;
@@ -36,7 +36,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult Relatorio()
         {
-            var alunos = _alunoRepositorio.BuscarTodosAlunos();
+            var alunos = _alunoRepositorio.ListarTodos();
 
             var relatorioViewModels = alunos
                 .Select(x => new RelatorioViewModel

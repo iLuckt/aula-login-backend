@@ -1,6 +1,6 @@
 ﻿namespace WebApplication1.Models
 {
-    public class Turma
+    public class Aluno
     {
         public int Id { get; set; }
         public int IdTurma { get; set; }

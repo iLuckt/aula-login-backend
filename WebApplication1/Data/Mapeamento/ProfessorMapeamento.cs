@@ -6,7 +6,7 @@ public class ProfessorMapeamento : IEntityTypeConfiguration<Professores>
 {
     public void Configure(EntityTypeBuilder<Professores> builder)
     {
-        builder.ToTable("Professores");
+        builder.ToTable("Professor");
 
         builder.HasKey(t => t.Id);
         builder.Property(t => t.Id).ValueGeneratedOnAdd();
