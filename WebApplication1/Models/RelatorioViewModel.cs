@@ -2,7 +2,7 @@
 {
     public class RelatorioViewModel
     {
-        public Turma Aluno { get; set; }
+        public Aluno Aluno { get; set; }
         public Turma Turma { get; set; }
     }
 }

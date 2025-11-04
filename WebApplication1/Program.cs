@@ -6,11 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var connectionstring = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionstring = builder.Configuration.GetConnectionString("Casa");
 builder.Services.AddDbContext<BancoContexto>(options => options.UseSqlServer(connectionstring));
 
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-builder.Services.AddScoped<ITurmaRepositorio, AlunoRepositorio>();
+builder.Services.AddScoped<IAlunoRepositorio, AlunoRepositorio>();
 builder.Services.AddScoped<IProfessorRepositorio, ProfessorRepositorio>();
 builder.Services.AddScoped<ITurmaRepositorio, TurmaRepositorio>();
 

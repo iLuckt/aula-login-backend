@@ -7,10 +7,95 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JovemProgramadorWeb.styles.css" asp-append-version="true" />
+
+    <style>
+
+        :root {
+            /* Variáveis de Cores */
+            --color-background-dark: #121212;
+            --color-text-light: #ffffff;
+            --color-accent-gold: #b8860b;
+            --color-accent-gold-hover: #d4af37;
+            --color-border: #444444;
+            --color-navbar-bg: #1e1e1e; /* Fundo do Navbar */
+            --color-footer-bg: #1e1e1e; /* Fundo do Footer */
+        }
+
+        /* Body e Main Content */
+        body {
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 1. HEADER / NAVBAR */
+        header {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fundo do Navbar e Borda */
+        .navbar {
+            background-color: var(--color-navbar-bg) !important;
+            border-bottom: 2px solid var(--color-accent-gold) !important;
+            /* Força o ícone do toggler a ser claro */
+            --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+
+        /* Botão Toggler */
+        .navbar-toggler {
+            border-color: var(--color-accent-gold) !important;
+        }
+
+        /* Marca/Título */
+        .navbar-brand {
+            color: var(--color-text-light) !important;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Links de Navegação */
+        .navbar-nav .nav-link {
+            color: var(--color-accent-gold) !important;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+            /* Hover dos Links */
+            .navbar-nav .nav-link:hover {
+                color: var(--color-accent-gold-hover) !important;
+                background-color: rgba(184, 134, 11, 0.15); /* Fundo sutil */
+                border-radius: 4px;
+            }
+
+        /* 2. FOOTER / RODAPÉ */
+        .footer {
+            background-color: var(--color-footer-bg);
+            border-top: 1px solid var(--color-border) !important;
+            color: #808080 !important; /* Texto cinza suave no footer */
+            padding: 15px 0;
+        }
+
+            /* Links do Footer */
+            .footer a {
+                color: var(--color-accent-gold) !important;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                .footer a:hover {
+                    color: var(--color-accent-gold-hover) !important;
+                    text-decoration: underline;
+                }
+
+        /* 3. Estilo global para links em dourado (caso precise) */
+        a {
+            color: var(--color-accent-gold);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">JovemProgramadorWeb</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -20,19 +105,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Página principal</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Página principal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Aluno" asp-action="Index">Alunos</a>
+                            <a class="nav-link" asp-area="" asp-controller="Aluno" asp-action="Index">Alunos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Professor" asp-action="Index">Professores</a>
+                            <a class="nav-link" asp-area="" asp-controller="Professor" asp-action="Index">Professores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Relatorio">Relatório</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Relatorio">Relatório</a>
                         </li>
                     </ul>
                 </div>

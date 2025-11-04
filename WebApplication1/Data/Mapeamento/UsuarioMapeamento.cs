@@ -11,7 +11,7 @@ public class UsuarioMapeamento : IEntityTypeConfiguration<Usuario>
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Email).HasColumnType("varchar(50)");
-        builder.Property(t => t.Senha).HasColumnType("varchar(50)");
+        builder.Property(t => t.Senha).HasColumnType("varchar(20)");
 
     }
 }

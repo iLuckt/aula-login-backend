@@ -1,5 +1,109 @@
 ﻿@model IEnumerable<RelatorioViewModel>
 
+<style>
+
+    :root {
+        /* Variáveis de Cores */
+        --color-background-dark: #121212;
+        --color-surface: #262626;
+        --color-row-odd: #2c2c2c; /* Fundo da linha ímpar */
+        --color-row-even: #333333; /* Fundo da linha par (Zebrado) */
+        --color-text-light: #ffffff; /* Texto dos dados em BRANCO PURO */
+        --color-accent-gold: #b8860b; /* Dourado Clássico */
+        --color-accent-gold-hover: #d4af37; /* Dourado Claro para hover */
+        --color-border: #444444; /* Borda sutil */
+    }
+
+
+    /* Tabela de Dados */
+    .table {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        overflow: hidden;
+        width: 100%;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        margin-top: 20px;
+    }
+
+        /* Cabeçalho da Tabela - Escuro com Dourado */
+        .table thead {
+            background-color: #1e1e1e;
+            color: var(--color-accent-gold); /* Texto do cabeçalho em dourado */
+            border-bottom: 2px solid var(--color-accent-gold);
+        }
+
+        .table th {
+            vertical-align: middle;
+            padding: 12px 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-bottom: 2px solid var(--color-accent-gold);
+        }
+
+        /* Corpo da Tabela - Fundo Escuro, Texto Branco */
+        .table tbody {
+            color: var(--color-text-light); /* Texto dos dados em BRANCO PURO */
+        }
+
+            .table tbody tr {
+                transition: background-color 0.3s ease;
+            }
+
+                /* Zebrado Escuro */
+                .table tbody tr:nth-child(odd) {
+                    background-color: var(--color-row-odd);
+                }
+
+                .table tbody tr:nth-child(even) {
+                    background-color: var(--color-row-even);
+                }
+
+                .table tbody tr:hover {
+                    background-color: #444444; /* Destacar linha no hover */
+                    box-shadow: inset 3px 0 0 0 var(--color-accent-gold); /* Borda dourada lateral no hover */
+                }
+
+        .table td {
+            border-top: 1px solid var(--color-border);
+            vertical-align: middle;
+            padding: 10px 8px;
+        }
+
+        /* Mensagem de "Nenhuma turma" */
+        .table tbody tr td[colspan="10"] {
+            font-style: italic;
+            color: #a0a0a0;
+            padding: 30px;
+            background-color: var(--color-surface);
+            text-align: center;
+        }
+
+    /* Botão Primário (Voltar) - Dourado */
+    .btn-primary {
+        background-color: var(--color-accent-gold);
+        border-color: var(--color-accent-gold);
+        color: var(--color-background-dark);
+        font-weight: bold;
+        padding: 10px 25px;
+        text-transform: uppercase;
+        margin: 0 5px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-gold-hover);
+            border-color: var(--color-accent-gold-hover);
+            transform: translateY(-1px);
+        }
+
+    /* Área de Ações Finais */
+    .text-center {
+        padding-top: 25px;
+        margin-top: 25px;
+        border-top: 1px solid var(--color-border);
+    }
+</style>
 
 <table class="table">
     <thead>
@@ -7,9 +111,8 @@
             <th scope="col">Nome do Aluno</th>
             <th scope="col">Matrícula</th>
             <th scope="col">Turma</th>
-            <th scope="col">DataInicio</th>
-            <th scope="col">DataFim</th>
-
+            <th scope="col">Data Início</th>
+            <th scope="col">Data Fim</th>
             <th scope="col" class="text-end">Ações</th>
         </tr>
     </thead>
@@ -18,7 +121,7 @@
         @if (!Model.Any())
         {
             <tr>
-                <td colspan="10" class="text-center">Nenhuma turma registrado até o momento</td>
+                <td colspan="6" class="text-center">Nenhuma turma registrado até o momento</td>
             </tr>
         }
         else
@@ -32,6 +135,10 @@
                     <td>@item.Turma?.Nome</td>
                     <td>@item.Turma?.DataInicio</td>
                     <td>@item.Turma?.DataFim</td>
+                    <td class="text-end">
+                        <div class="btn-group" role="group">
+                        </div>
+                    </td>
                 </tr>
             }
 

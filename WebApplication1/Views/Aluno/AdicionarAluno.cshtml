@@ -1,6 +1,119 @@
-﻿@model Turma
+﻿@model Aluno
 
-<form asp-controller="Aluno" asp-action="Cadastrar" method="post">
+<style>
+    /* Estilos Profissionais - Paleta Cinza Escuro e Dourado (Para Formulário de Cadastro) */
+
+    :root {
+        /* Variáveis de Cores */
+        --color-background-dark: #121212; /* Fundo principal: Preto muito escuro */
+        --color-surface: #1e1e1e; /* Superfícies (formulários, painéis): Cinza Escuro */
+        --color-text-light: #f0f0f0; /* Texto claro (quase branco) */
+        --color-accent-gold: #b8860b; /* Dourado Clássico (Goldenrod Escuro) */
+        --color-accent-gold-hover: #d4af37; /* Dourado Claro para hover */
+        --color-border: #333333; /* Borda sutil */
+        --color-error: #cc0000; /* Vermelho escuro para mensagens de erro */
+    }
+
+    body {
+        background-color: var(--color-background-dark);
+        color: var(--color-text-light);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 30px;
+    }
+
+    /* Contêiner Principal do Formulário */
+    form {
+        background-color: var(--color-surface);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        max-width: 800px; /* Adaptação para um formulário com mais campos */
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap; /* Permite que os campos se organizem em mais de uma coluna */
+        justify-content: space-between;
+    }
+
+    /* Grupos de Campos (Bootstrap Classes) */
+    .mb-3 {
+        margin-bottom: 15px !important;
+    }
+
+    /* Configuração para distribuir campos em 3 colunas (col-md-4) */
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 31%; /* Ajuste para ter espaço entre 3 colunas */
+        margin-right: 2%; /* Espaçamento entre colunas */
+    }
+
+        .col-md-4:nth-child(3n) {
+            margin-right: 0;
+        }
+
+    /* Labels */
+    .form-label {
+        color: var(--color-text-light);
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 400;
+        text-transform: capitalize;
+    }
+
+    /* Inputs */
+    .form-control {
+        background-color: var(--color-border);
+        border: 1px solid #444444;
+        color: var(--color-text-light);
+        padding: 10px 12px;
+        border-radius: 5px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        width: 100%; /* Garante que o input preencha o col-md-4 */
+    }
+
+        .form-control:focus {
+            background-color: #333333;
+            border-color: var(--color-accent-gold);
+            box-shadow: 0 0 0 0.2rem rgba(184, 134, 11, 0.3);
+            color: var(--color-text-light);
+        }
+
+    /* Mensagens de Erro */
+    p[style="color: red;"] {
+        color: var(--color-error) !important;
+        font-size: 0.85em;
+        margin-top: -5px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    /* Área de Botões */
+    .text-center {
+        width: 100%; /* Ocupa a largura total abaixo das colunas */
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid var(--color-border);
+    }
+
+    /* Botões (Cadastrar e Voltar) - Dourado */
+    .btn-primary {
+        background-color: var(--color-accent-gold);
+        border-color: var(--color-accent-gold);
+        color: var(--color-background-dark);
+        font-weight: bold;
+        padding: 10px 25px;
+        text-transform: uppercase;
+        margin: 0 5px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-gold-hover);
+            border-color: var(--color-accent-gold-hover);
+            transform: translateY(-2px);
+        }
+</style>
+
+<form asp-controller="Aluno" asp-action="CadastrarAluno" method="post">
 
     <div class="mb-3 col-md-4">
         <label class="form-label">Nome:</label>
@@ -101,9 +214,20 @@
         <input type="text" asp-for="Numero" class="form-control" required>
     </div>
 
+    <div class="mb-3 col-md-4">
+        <label class="form-label">Turma:</label>
+
+        @if (TempData["ErroTurmaInvalida"] != null)
+        {
+            <p style="color: red;">@TempData["ErroTurmaInvalida"]</p>
+        }
+
+        <input type="text" asp-for="IdTurma" class="form-control" required>
+    </div>
+
     <div class="text-center">
         <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <a class="btn btn-primary" type="button" asp-controller="Aluno" asp-action="Index"> Voltar</a>
+        <a class="btn btn-primary" type="button" asp-controller="Aluno" asp-action="Index">Voltar</a>
     </div>
 </form>
 

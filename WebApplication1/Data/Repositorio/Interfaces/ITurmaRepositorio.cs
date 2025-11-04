@@ -4,7 +4,10 @@ namespace WebApplication1.Data.Repositorio.Interfaces
 {
     public interface ITurmaRepositorio
     {
-        public IEnumerable<Turma> BuscarTurmasPorId();
         public Turma? BuscarTurmasPorId(int id);
+        public List<Turma> BuscarTurmas();
+        public void CadastrarTurma(Turma turma);
+        public void EditarTurma(int id, Turma turma);
+        public void ExcluirTurma(int id);
     }
 }

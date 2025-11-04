@@ -1,4 +1,162 @@
-﻿@model IEnumerable<Turma>
+﻿@model IEnumerable<Aluno>
+
+<style>
+
+    :root {
+        /* Variáveis de Cores */
+        --color-background-dark: #121212; /* Fundo principal: Preto muito escuro */
+        --color-surface: #262626; /* Superfícies (tabelas, forms): Cinza Escuro */
+        --color-row-odd: #2c2c2c; /* Fundo da linha ímpar: Cinza escuro */
+        --color-row-even: #333333; /* Fundo da linha par: Cinza médio-escuro (para o zebrado) */
+        --color-text-light: #ffffff; /* Texto geral agora é branco PURO */
+        --color-accent-gold: #b8860b; /* Dourado Clássico (Goldenrod Escuro) */
+        --color-accent-gold-hover: #d4af37; /* Dourado Claro para hover */
+        --color-border: #444444; /* Borda sutil */
+        --color-danger: #8b0000; /* Vermelho Escuro para Excluir */
+    }
+
+    body {
+        background-color: var(--color-background-dark);
+        color: var(--color-text-light); /* Texto geral do body é branco */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+    }
+
+    /* Formulário de Busca */
+    form {
+        margin-bottom: 25px;
+        padding: 20px;
+        border: 1px solid var(--color-border);
+        background-color: var(--color-surface);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-control {
+        background-color: #444444;
+        border: 1px solid var(--color-border);
+        color: var(--color-text-light);
+    }
+
+        .form-control:focus {
+            border-color: var(--color-accent-gold);
+            box-shadow: 0 0 0 0.25rem rgba(184, 134, 11, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: #a0a0a0;
+        }
+
+    /* Botões Dourados */
+    .btn-primary {
+        background-color: var(--color-accent-gold);
+        border-color: var(--color-accent-gold);
+        color: var(--color-background-dark);
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-gold-hover);
+            border-color: var(--color-accent-gold-hover);
+            color: var(--color-background-dark);
+            transform: translateY(-1px);
+        }
+
+    /* Tabela de Dados */
+    .table {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        overflow: hidden;
+        width: 100%;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        margin-top: 20px;
+    }
+
+        /* Cabeçalho da Tabela (Mantém-se Escuro com Dourado) */
+        .table thead {
+            background-color: #1e1e1e;
+            color: var(--color-accent-gold);
+            border-bottom: 2px solid var(--color-accent-gold);
+        }
+
+        .table th {
+            vertical-align: middle;
+            padding: 12px 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-bottom: 2px solid var(--color-accent-gold);
+        }
+
+        /* Corpo da Tabela: FUNDO ESCURO E TEXTO BRANCO PURO */
+        .table tbody {
+            color: var(--color-text-light); /* Define o texto dos dados como BRANCO PURO */
+        }
+
+            .table tbody tr {
+                transition: background-color 0.3s ease;
+            }
+
+                /* Fundo Zebrado - Escuro */
+                .table tbody tr:nth-child(odd) {
+                    background-color: var(--color-row-odd);
+                }
+
+                .table tbody tr:nth-child(even) {
+                    background-color: var(--color-row-even);
+                }
+
+                .table tbody tr:hover {
+                    background-color: #444444; /* Cinza claro para o hover */
+                    box-shadow: inset 3px 0 0 0 var(--color-accent-gold);
+                }
+
+        .table td {
+            border-top: 1px solid var(--color-border);
+            vertical-align: middle;
+            padding: 10px 8px;
+        }
+
+        /* Mensagem de "Nenhum aluno" */
+        .table tbody tr td[colspan="11"] {
+            font-style: italic;
+            color: #a0a0a0;
+            padding: 30px;
+            background-color: var(--color-surface);
+            text-align: center;
+        }
+
+    /* Botões de Ação na Tabela */
+    .btn-group .btn-sm.btn-primary {
+        background-color: var(--color-accent-gold);
+        border-color: var(--color-accent-gold);
+        color: var(--color-background-dark);
+    }
+
+        .btn-group .btn-sm.btn-primary:hover {
+            background-color: var(--color-accent-gold-hover);
+            border-color: var(--color-accent-gold-hover);
+        }
+
+    .btn-sm.btn-danger {
+        background-color: var(--color-danger);
+        border-color: var(--color-danger);
+        color: var(--color-text-light);
+    }
+
+        .btn-sm.btn-danger:hover {
+            background-color: #a52a2a;
+            border-color: #a52a2a;
+        }
+
+    /* Área de Ações Finais */
+    .text-center:last-child {
+        padding-top: 25px;
+        margin-top: 25px;
+        border-top: 1px solid var(--color-border);
+    }
+</style>
 
 <div>
     <form method="get" asp-controller="Aluno" asp-action="Index">
@@ -19,6 +177,7 @@
             <th scope="col">Bairro</th>
             <th scope="col">Cidade</th>
             <th scope="col">Número</th>
+            <th scope="col">Turma</th>
             <th scope="col" class="text-end">Ações</th>
         </tr>
     </thead>
@@ -27,7 +186,7 @@
         @if (!Model.Any())
         {
             <tr>
-                <td colspan="10" class="text-center">Nenhum aluno registrado até o momento</td>
+                <td colspan="11" class="text-center">Nenhum aluno registrado até o momento</td>
             </tr>
         }
         else
@@ -45,6 +204,7 @@
                     <td>@item.Bairro</td>
                     <td>@item.Cidade</td>
                     <td>@item.Numero</td>
+                    <td>@item.IdTurma</td>
                     <td class="text-end">
                         <div class="btn-group" role="group">
                             <a type="submit" class="btn btn-sm btn-primary" role="button" asp-controller="Aluno" asp-route-id="@item.Id" asp-action="EditarAluno">Editar</a>

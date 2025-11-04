@@ -13,10 +13,11 @@ public class BancoContexto : DbContext
         modelBuilder.ApplyConfiguration(new UsuarioMapeamento());
         modelBuilder.ApplyConfiguration(new AlunoMapeamento());
         modelBuilder.ApplyConfiguration(new ProfessorMapeamento());
+        modelBuilder.ApplyConfiguration(new TurmaMapeamento());
     }
 
     public DbSet<Usuario> Usuario { get; set; }
-    public DbSet<Turma> Aluno { get; set; }
+    public DbSet<Aluno> Aluno { get; set; }
     public DbSet<Professores> Professores { get; set; }
     public DbSet<Turma> Turma { get; set; }
 }
