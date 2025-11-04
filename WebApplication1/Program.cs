@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var connectionstring = builder.Configuration.GetConnectionString("Trabalho");
+var connectionstring = builder.Configuration.GetConnectionString("banco provisorio");
 builder.Services.AddDbContext<BancoContexto>(options => options.UseSqlServer(connectionstring));
 
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();

@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
         public IActionResult Editar(int id, Aluno aluno)
         {
             _alunoRepositorio.EditarAluno(id, aluno);
-            return View("Index", _alunoRepositorio.BuscarAlunoPorId(id));
+            return View("Index", _alunoRepositorio.ListarTodos());
         }
         public IActionResult Excluir(int id)
         {
